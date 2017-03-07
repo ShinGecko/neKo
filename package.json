@@ -1,6 +1,17 @@
 {
-  "name": "nekoo",
-  "version": "0.1.0",
+  "name": "neko",
+  "version": "0.0.0",
+  "description": "neKo is an innovative chat created by two students from France. It has been designed to offer several brand new user-friendly features.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shenrak/neKo-Api.git"
+  },
+  "author": "Giom, Veuch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shenrak/neKo-Api/issues"
+  },
+  "homepage": "https://github.com/Shenrak/neKo-Api#readme",
   "private": true,
   "dependencies": {
     "react": "^15.4.2",
