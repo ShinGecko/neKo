@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
@@ -1601,3 +1602,9 @@ Please refer to [this section](#resolving-heroku-deployment-errors).
 ## Something Missing?
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
+=======
+# neKo
+Front-end of the neKo chat service. An innovating chat created to answer the needs of some students from France.
+
+This is the neKo's Front repository. You can lso check the [Back-End API](https://github.com/ShinGecko/neKo-Api) repo.
+>>>>>>> 2163ee2dc823fb614995ca7fefd1995705e25759
