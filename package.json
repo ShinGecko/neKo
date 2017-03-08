@@ -18,6 +18,8 @@
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
+    "eslint-config-xo-react": "^0.10.0",
+    "eslint-plugin-react": "^6.10.0",
     "husky": "^0.13.1",
     "react-scripts": "0.9.4",
     "xo": "^0.17.1"
@@ -31,9 +33,15 @@
     "lint": "xo"
   },
   "xo": {
+    "envs": [
+      "browser"
+    ],
+    "extends": "xo-react",
     "semicolon": false,
     "space": true,
     "rules": {
+      "unicorn/filename-case": "off",
+      "import/no-unassigned-import": "off",
       "no-var": "error",
       "object-curly-spacing": [
         "error",
@@ -43,6 +51,17 @@
         "error",
         "only-multiline"
       ]
-    }
+    },
+    "overrides": [
+      {
+        "files": "src/**/*.test.js",
+        "envs": [
+          "node", "browser"
+        ],
+        "globals": [
+          "it"
+        ]
+      }
+    ]
   }
 }
