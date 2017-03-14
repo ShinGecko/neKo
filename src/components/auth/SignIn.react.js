@@ -1,26 +1,26 @@
 import React, { Component } from 'react'
-import './login-form.css'
+import './SignIn.css'
 
-class LoginForm extends Component {
+class SignIn extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      login: '',
+      pseudo: '',
       password: '',
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChangeLogin = this.handleChangeLogin.bind(this)
+    this.handleChangePseudo = this.handleChangePseudo.bind(this)
     this.handleChangePassword = this.handleChangePassword.bind(this)
   }
 
   handleSubmit(e) {
-    this.setState({ submitted: ('login : ' + this.state.login + ', password: ' + this.state.password) })
+    this.setState({ submitted: ('pseudo : ' + this.state.pseudo + ', password: ' + this.state.password) })
     e.preventDefault()
   }
 
-  handleChangeLogin(e) {
-    this.setState({ login: e.target.value })
+  handleChangePseudo(e) {
+    this.setState({ pseudo: e.target.value })
   }
 
   handleChangePassword(e) {
@@ -29,10 +29,10 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <form className="login-form" onSubmit={this.handleSubmit}>
+      <form className="pseudo-form" onSubmit={this.handleSubmit}>
         <div className="form-group">
-          <label htmlFor="login"> Login : </label>
-          <input type="text" className="form-control" name="login" value={this.state.login} onChange={this.handleChangeLogin}/>
+          <label htmlFor="pseudo"> Pseudo : </label>
+          <input type="text" className="form-control" name="pseudo" value={this.state.pseudo} onChange={this.handleChangePseudo}/>
         </div>
 
         <div className="form-group">
@@ -47,4 +47,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm
+export default SignIn
