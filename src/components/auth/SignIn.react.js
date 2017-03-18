@@ -18,6 +18,7 @@ class SignIn extends Component {
     const pseudo = this.state.pseudo
     const password = this.state.password
 
+    this.setState({ submitted: ('pseudo : ' + pseudo + ', password: ' + password) })
     this.props.onSubmit(pseudo, password)
 
     e.preventDefault()
