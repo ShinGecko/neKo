@@ -15,7 +15,10 @@ class SignIn extends Component {
   }
 
   handleSubmit(e) {
-    this.setState({ submitted: ('pseudo : ' + this.state.pseudo + ', password: ' + this.state.password) })
+    const pseudo = this.state.pseudo
+    const password = this.state.password
+
+    this.setState({ submitted: ('pseudo : ' + pseudo + ', password: ' + password) })
     e.preventDefault()
   }
 
@@ -29,7 +32,7 @@ class SignIn extends Component {
 
   render() {
     return (
-      <form className="pseudo-form" onSubmit={this.handleSubmit}>
+      <form className="Signin-form" onSubmit={this.handleSubmit}>
         <div className="form-group">
           <label htmlFor="pseudo"> Pseudo : </label>
           <input type="text" className="form-control" name="pseudo" value={this.state.pseudo} onChange={this.handleChangePseudo}/>
