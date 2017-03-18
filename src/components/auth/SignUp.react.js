@@ -26,7 +26,8 @@ class SignUp extends Component {
     const email = this.state.email
     const confirmEmail = this.state.confirmEmail
 
-    this.setState({ submitted: ('pseudo : ' + pseudo + ', password: ' + password + ', confirmPassword : ' + confirmPassword + ', email : ' + email + ' confirmeEmail : ' + confirmEmail) })
+    this.props.onSubmit(pseudo, password, email)
+
     e.preventDefault()
   }
 
@@ -79,10 +80,13 @@ class SignUp extends Component {
         </div>
 
         <button type="submit"> Send </button>
-        <p>{this.state.submitted}</p>
       </form>
     )
   }
+}
+
+SignUp.propTypes = {
+  onSubmit: React.PropTypes.func.isRequired
 }
 
 export default SignUp
