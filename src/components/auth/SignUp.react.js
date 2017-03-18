@@ -27,16 +27,14 @@ class SignUp extends Component {
     this.handleChangeConfirmEmail = this.handleChangeConfirmEmail.bind(this)
   }
 
-  handleSubmit(e) {
+  checkForm(message = '') {
     const pseudo = this.state.pseudo
     const password = this.state.password
     const confirmPassword = this.state.confirmPassword
     const email = this.state.email
     const confirmEmail = this.state.confirmEmail
 
-    let message
     let valid = true
-
     if (!(email === confirmEmail)) {
       valid = false
       message = 'Mails adresses doesn\'t match'
@@ -62,9 +60,18 @@ class SignUp extends Component {
       message = 'Invalid pseudo : ' + regex.pseudo.description
     }
 
+    return [valid, message]
+  }
+
+  handleSubmit(e) {
+    const pseudo = this.state.pseudo
+    const password = this.state.password
+    const email = this.state.email
+
+    let [valid, message] = this.checkForm()
+
     if (valid) {
       this.props.onSubmit(pseudo, password, email)
-      message = ''
     }
 
     this.setState({ error: message })
