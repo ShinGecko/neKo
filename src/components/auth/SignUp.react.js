@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
 
+const regex = {
+  pseudo: /^[\w-]{3,24}$/,
+  password: /^.{8,}$/,
+  email: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/,
+}
+regex.pseudo.description = 'between 3 and 24 characters, no special characters exept "_"'
+regex.password.description = 'minimum 8 characters'
+
 class SignUp extends Component {
   constructor(props) {
     super(props)
@@ -26,9 +34,40 @@ class SignUp extends Component {
     const email = this.state.email
     const confirmEmail = this.state.confirmEmail
 
-    this.setState({ submitted: ('pseudo : ' + pseudo + ', password: ' + password + ', confirmPassword : ' + confirmPassword + ', email : ' + email + ' confirmeEmail : ' + confirmEmail) })
-    this.props.onSubmit(pseudo, password, email)
+    let message
+    let valid = true
 
+    if (!(email === confirmEmail)) {
+      valid = false
+      message = 'Mails adresses doesn\'t match'
+    }
+
+    if (!(regex.email.test(email))) {
+      valid = false
+      message = 'Please entre a valid mail adress'
+    }
+
+    if (!(password === confirmPassword)) {
+      valid = false
+      message = 'Passwords doesn\'t match'
+    }
+
+    if (!(regex.password.test(password))) {
+      valid = false
+      message = 'Invalid password : ' + regex.password.description
+    }
+
+    if (!regex.pseudo.test(pseudo)) {
+      valid = false
+      message = 'Invalid pseudo : ' + regex.pseudo.description
+    }
+
+    if (valid) {
+      this.props.onSubmit(pseudo, password, email)
+      message = ''
+    }
+
+    this.setState({ error: message })
     e.preventDefault()
   }
 
@@ -53,6 +92,12 @@ class SignUp extends Component {
   }
 
   render() {
+    const styles = {
+      red: {
+        color: 'red',
+      },
+    }
+
     return (
       <form className="signup-form" onSubmit={this.handleSubmit}>
         <div className="form-group">
@@ -79,7 +124,7 @@ class SignUp extends Component {
           <label htmlFor="confirm-email"> Confirm Email : </label>
           <input type="text" className="form-control" name="confirm-email" value={this.state.confirmEmail} onChange={this.handleChangeConfirmEmail}/>
         </div>
-
+        <p style={styles.red}> {this.state.error} </p>
         <button type="submit"> Send </button>
       </form>
     )
