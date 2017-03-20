@@ -1,30 +1,59 @@
 import React, { Component } from 'react'
 
+const regex = {
+  pseudo: /^[\w-]{3,24}$/,
+  password: /^.{8,}$/,
+  email: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/,
+}
+
 class SignIn extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      pseudo: '',
+      login: '',
       password: '',
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChangePseudo = this.handleChangePseudo.bind(this)
+    this.handleChangeLogin = this.handleChangeLogin.bind(this)
     this.handleChangePassword = this.handleChangePassword.bind(this)
   }
 
-  handleSubmit(e) {
-    const pseudo = this.state.pseudo
+  checkForm() {
+    const login = this.state.login
     const password = this.state.password
 
-    this.setState({ submitted: ('pseudo : ' + pseudo + ', password: ' + password) })
-    this.props.onSubmit(pseudo, password)
+    let valid = true
+    let message = ''
+    if (!regex.password.test(password)) {
+      valid = false
+      message = 'Please enter a valid password'
+    }
 
+    if (!(regex.pseudo.test(login) || regex.email.test(login))) {
+      valid = false
+      message = 'Please enter a valid login (pseudo or mail adress)'
+    }
+
+    return [valid, message]
+  }
+
+  handleSubmit(e) {
+    const login = this.state.login
+    const password = this.state.password
+
+    let [valid, message] = this.checkForm()
+
+    if (valid) {
+      this.props.onSubmit(login, password)
+    }
+
+    this.setState({ errorMessage: message })
     e.preventDefault()
   }
 
-  handleChangePseudo(e) {
-    this.setState({ pseudo: e.target.value })
+  handleChangeLogin(e) {
+    this.setState({ login: e.target.value })
   }
 
   handleChangePassword(e) {
@@ -32,18 +61,24 @@ class SignIn extends Component {
   }
 
   render() {
+    const styles = {
+      red: {
+        color: 'red',
+      },
+    }
+
     return (
       <form className="Signin-form" onSubmit={this.handleSubmit}>
         <div className="form-group">
-          <label htmlFor="pseudo"> Pseudo : </label>
-          <input type="text" className="form-control" name="pseudo" value={this.state.pseudo} onChange={this.handleChangePseudo}/>
+          <label htmlFor="login"> Login : </label>
+          <input type="text" className="form-control" name="login" value={this.state.login} onChange={this.handleChangeLogin}/>
         </div>
 
         <div className="form-group">
           <label htmlFor="password"> Password : </label>
           <input type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChangePassword}/>
         </div>
-
+        <p style={styles.red}> {this.state.errorMessage} </p>
         <button type="submit"> Send </button>
       </form>
     )

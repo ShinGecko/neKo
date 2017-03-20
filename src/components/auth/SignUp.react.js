@@ -27,7 +27,7 @@ class SignUp extends Component {
     this.handleChangeConfirmEmail = this.handleChangeConfirmEmail.bind(this)
   }
 
-  checkForm(message = '') {
+  checkForm() {
     const pseudo = this.state.pseudo
     const password = this.state.password
     const confirmPassword = this.state.confirmPassword
@@ -35,6 +35,7 @@ class SignUp extends Component {
     const confirmEmail = this.state.confirmEmail
 
     let valid = true
+    let message = ''
     if (!(email === confirmEmail)) {
       valid = false
       message = 'Mails adresses doesn\'t match'
@@ -74,7 +75,7 @@ class SignUp extends Component {
       this.props.onSubmit(pseudo, password, email)
     }
 
-    this.setState({ error: message })
+    this.setState({ errorMessage: message })
     e.preventDefault()
   }
 
@@ -131,7 +132,7 @@ class SignUp extends Component {
           <label htmlFor="confirm-email"> Confirm Email : </label>
           <input type="text" className="form-control" name="confirm-email" value={this.state.confirmEmail} onChange={this.handleChangeConfirmEmail}/>
         </div>
-        <p style={styles.red}> {this.state.error} </p>
+        <p style={styles.red}> {this.state.errorMessage} </p>
         <button type="submit"> Send </button>
       </form>
     )
