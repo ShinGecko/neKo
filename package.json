@@ -14,9 +14,15 @@
   "homepage": "https://github.com/Shenrak/neKo-Api#readme",
   "private": true,
   "dependencies": {
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "css-loader": "^0.27.3",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "superagent": "^3.5.1"
+    "superagent": "^3.5.2",
+    "webpack": "^2.3.1",
+    "wepack": "0.0.1"
   },
   "devDependencies": {
     "eslint-config-xo-react": "^0.10.0",
@@ -26,8 +32,8 @@
     "xo": "^0.17.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "webpack -d --watch",
+    "build": "webpack -d",
     "test": "xo && react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "prepush": " npm run lint --silent",
