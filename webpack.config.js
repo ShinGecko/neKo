@@ -1,7 +1,7 @@
 let path = require('path')
 let webpack = require('webpack')
 
-let BUILD_DIR = path.resolve(__dirname, 'src/build')
+let BUILD_DIR = path.resolve(__dirname, 'public')
 let APP_DIR = path.resolve(__dirname, 'src')
 
 let config = {
