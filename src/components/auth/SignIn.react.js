@@ -1,10 +1,5 @@
 import React, { Component } from 'react'
-
-const regex = {
-  pseudo: /^[\w-]{3,24}$/,
-  password: /^.{8,}$/,
-  email: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/,
-}
+import regex from '../../utils/regex'
 
 class SignIn extends Component {
   constructor(props) {
