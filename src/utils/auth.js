@@ -1,6 +1,5 @@
 const request = require('superagent')
 
-
 const signIn = (login, password) => {
   request
     .post('http://localhost:8085/users/auth')
